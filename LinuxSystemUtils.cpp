@@ -24,8 +24,9 @@ using namespace std;
 
 LinuxSystemUtils::LinuxSystemUtils() {
     cout << "Initializing Linux System Utilities" << endl;
-    cout << "Setting CPU Information File Path" << endl;
+    cout << "Analyzing CPU information..." << endl;
     this->CPU_INFO_FILE_PATH = "/proc/cpuinfo";
+    analyzeCpu();
     cout << "Fishing for BarraCUDAs... ♥ NVIDIA" << endl;
     if (cudaCheck()) {
         cout << "Caught a CUDA!";
@@ -37,22 +38,41 @@ LinuxSystemUtils::LinuxSystemUtils() {
 
 // Stream and Parse /proc/cpuinfo to get a CPU and CORE count
 
-unsigned int LinuxSystemUtils::getCpuCount() {
-    string line;
-    string cpuLabel = "physical id" + '\t';
-    string coresLabel = "cpu cores" + '\t';
+unsigned int LinuxSystemUtils::analyzeCpu() {
+    size_t pos = 0;
+    string info;
+    string physicalLabel = "physical id" + '\t';
+    string coresLabel = "cpu cores";
     string siblingsLabel = "siblings" + '\t';
     string delimiter = ":";
-    cout << "2. Evaluating Processor Capabilities..." << endl;
-    ifstream CpuInfoFile;
-    // check the CpuInfoFile and calculate the amount of cores threads and physical processors
-    // done by evaluating the various values provided by different parameters such as core IDs processor IDs (can be a physical CPU, thread (hyperthread) or core) i.e.
-    // processing unit not actual CPU -> evaluate siblings for dependency accuracy from this file.
+    string label;
+    ifstream CpuInfoFile(this->CPU_INFO_FILE_PATH);
+    if (CpuInfoFile.is_open()) {
+        cout << "Examining cpuinfo" << endl;
+        while (getline(CpuInfoFile, info)) {
+            while ((pos = info.find(delimiter)) != std::string::npos) {
+                label = info.substr(0, pos);
+                info.erase(0, pos + delimiter.length());
+            }
+          //  cout << label << " : " << info << std::endl;
+            if(label.compare(siblingsLabel) == 0){
+                cout << "Found the siblings";
+            }
+            if(label.compare(coresLabel) == 0){
+                cout << "Found the siblings";
+            }
+            
+            
+        }
+        CpuInfoFile.close();
+    }
+
+
     return 0;
 }
 
 bool LinuxSystemUtils::cudaCheck() {
-    this->CUDA_ENABLED = false;
+    
     // dive into driver details or try and run system("nvidia-smi") output as XML and parse for existing cuda_version parameter and set flag.
-    return this->CUDA_ENABLED;
+    return false;
 }

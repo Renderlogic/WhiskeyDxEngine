@@ -23,14 +23,11 @@ class LinuxSystemUtils {
 public:
     LinuxSystemUtils();
     bool cudaCheck();
-    bool checkForHyperthreading();
-    unsigned int getCpuCount();
-    unsigned int getCoreCount();
-protected:
+    unsigned int analyzeCpu();
     
+protected:
 private:
     string CPU_INFO_FILE_PATH;
-    bool CUDA_ENABLED;
 };
 
 #endif /* LINUXSYSTEMUTILS_H */
