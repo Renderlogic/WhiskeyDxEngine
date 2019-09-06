@@ -22,10 +22,10 @@ using namespace std;
 class LinuxSystemUtils {
 public:
     LinuxSystemUtils();
-    static bool cudaCheck();
-    static bool checkForHyperthreading();
-    static unsigned int getCpuCount();
-    static unsigned int getCoreCount();
+    bool cudaCheck();
+    bool checkForHyperthreading();
+    unsigned int getCpuCount();
+    unsigned int getCoreCount();
 protected:
     
 private:
