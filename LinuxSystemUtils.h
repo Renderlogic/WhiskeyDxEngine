@@ -23,12 +23,11 @@ class LinuxSystemUtils {
 public:
     LinuxSystemUtils();
     bool cudaCheck();
-    unsigned int analyzeCpu();
-    
+    void analyzeCpu();
 protected:
 private:
     string CPU_INFO_FILE_PATH;
+    void trimDirty(string &dirtyString);
 };
-
 #endif /* LINUXSYSTEMUTILS_H */
 
