@@ -21,7 +21,23 @@ using namespace std;
 
 class LinuxSystemUtils {
 public:
-    LinuxSystemUtils();
+    /* pointer to the hardware system profile data structure in main global space for use within this class */
+    struct hardwareSystem *pSystemMemAddress;
+    /**
+     * 
+     * @return memory address aka pointer to the hardware system profile data structure
+     */
+    struct hardwareSystem* getHardwareSystemAddress();
+    /**
+     * Will call all necessary methods for the SystemUtils object and populate the hardwareSystem structure
+     * @param pThisSystem entry point to pass hardwareSystem aka hardware profile structure mem address to this instance.
+     */
+    void initialize(struct hardwareSystem *pThisSystem);
+    /**
+     Check for and analyze all possible resources to detect a CUDA enabled card and return true if found false if not
+     * assign to hardwareSystem cudaEnabled property
+     * @return 
+     */
     bool cudaCheck();
     void analyzeCpu();
 protected:

@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   LinuxSystemUtils.cpp
  * Author: Renderlogic, Inc.
@@ -19,15 +13,20 @@
 #include <string>
 #include <ctype.h>
 #include "LinuxSystemUtils.h"
-
 using namespace std;
 
-LinuxSystemUtils::LinuxSystemUtils() {
+/**
+ * Initializes all the machine variables by calling respective methods
+ * @param pThisSystem pointer to mains hardwareSystem thisSystem profile for decision branching
+ */
+void LinuxSystemUtils::initialize(struct hardwareSystem *pThisSystem) {
+    cout << "Assigning Hardware Profile Structure Memory Address" << endl;
+    this->pSystemMemAddress = pThisSystem;
     cout << "Initializing Linux System Utilities" << endl;
     cout << "Analyzing CPU information..." << endl;
     this->CPU_INFO_FILE_PATH = "/proc/cpuinfo";
     analyzeCpu();
-    cout << "Fishing for BarraCUDAs... ♥ NVIDIA" << endl;
+    cout << "Fishing for BarraCUDAs... \033[1;32m♥ NVIDIA\033[0m" << endl;
     if (cudaCheck()) {
         cout << "Caught a CUDA!";
     } else {
@@ -35,9 +34,9 @@ LinuxSystemUtils::LinuxSystemUtils() {
     }
 }
 
-// Stream and Parse /proc/cpuinfo to get a CPU and CORE count
-
+/* Stream and Parse /proc/cpuinfo to get a CPU and CORE count and assign to hardwareSystem struct */
 void LinuxSystemUtils::analyzeCpu() {
+    /* File tokens/sentinels for grabbing values during parsing loops. */
     size_t pos = 0;
     string info;
     string physicalLabel = "physicalid";
@@ -45,9 +44,9 @@ void LinuxSystemUtils::analyzeCpu() {
     string siblingsLabel = "siblings";
     string delimiter = ":";
     string label;
+    /* Open the cpuinfo file and get and assign values to the hardwareSystem struct. */
     ifstream CpuInfoFile(this->CPU_INFO_FILE_PATH);
     if (CpuInfoFile.is_open()) {
-        cout << "Examining cpuinfo" << endl;
         while (getline(CpuInfoFile, info)) {
             while ((pos = info.find(delimiter)) != string::npos) {
                 label = info.substr(0, pos);
@@ -55,20 +54,27 @@ void LinuxSystemUtils::analyzeCpu() {
             }
             trimDirty(label);
             if (label.compare(siblingsLabel) == 0) {
-                cout << "Found the siblings";
+
             }
             if (label.compare(coresLabel) == 0) {
-                cout << "Found the siblings";
+
+            }
+            if (label.compare(physicalLabel) == 0) {
+
             }
         }
         CpuInfoFile.close();
     }
-    return 0;
 }
 
 bool LinuxSystemUtils::cudaCheck() {
-    // dive into driver details or try and run system("nvidia-smi") output as XML and parse for existing cuda_version parameter and set flag.
+    /* @todo Dive into driver details or try and run system("nvidia-smi") output as XML and parse for existing cuda_version parameter and set flag. */
     return false;
+}
+
+struct hardwareSystem* LinuxSystemUtils::getHardwareSystemAddress() {
+    cout << endl << "System Profile Data Structure Memory Address: " << this->pSystemMemAddress << endl;
+    return this->pSystemMemAddress;
 }
 
 void LinuxSystemUtils::trimDirty(string &dirtyString) {

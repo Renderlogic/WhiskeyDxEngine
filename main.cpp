@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   main.cpp
  * Author: johnjmcdonnell
@@ -18,6 +12,16 @@
 #include <ctype.h>
 #include "LinuxSystemUtils.h"
 
+/* Create structure for storing results from analyzing the hardware configuration of the current nix machine 
+ for various uses throughout the application. Properties are declared to default values on the assumption the luxury
+ hardware peripherals are a figment of our imagination. */
+struct hardwareSystem {
+    unsigned int coreCount{0};
+    unsigned int cpuCount{0};
+    bool isHyperthreaded{false};
+    bool cudaEnabled{false};
+};
+
 using namespace std;
 
 /*
@@ -25,8 +29,8 @@ using namespace std;
  */
 int main(int argc, char** argv) {
 
-
-    cout << "Welcome to the WhiskeyDxEngine Proof of Concept Version" << endl;
+    /* Begin GNU public license jargon requirement. */
+    cout << "Welcome to the \033[1;31mWhiskeyDxEngine\033[0m Proof of Concept Version." << endl;
     cout << "Copyright (C) 2019 Renderlogic, Inc. GPLv3" << endl;
     cout << "=========================================================================" << endl;
     cout <<
@@ -44,11 +48,23 @@ int main(int argc, char** argv) {
             "along with this program.  If not, see <https://www.gnu.org/licenses/>." << endl;
     cout << "=========================================================================" << endl;
     cout << endl;
+
+    /* Create an instance of the hardware system structure and populate with system specifications. */
     LinuxSystemUtils SystemUtils;
-    // make call to ICD 'restful' URI if needed - i.e. pull most recent additions etc -- maybe to hash comparison
-    // parse recent 38 CRF C data (not needed VA should be using ICD-10 and appending military subset
-    // store results
-    // make translation class/table for ICD->VA Diagnostics
-    // pull over patient data from VistA - enumerate existing Diagnostic 
+    hardwareSystem *pThisSystem, thisSystem;
+    pThisSystem = &thisSystem;
+    SystemUtils.initialize(pThisSystem);
+    SystemUtils.getHardwareSystemAddress();
+
+
+    /* @todo
+     1. Make call to ICD 'restful' URI if needed - i.e. pull most recent additions etc -- maybe to hash comparison.
+     2. Parse recent 38 CRF C data (not needed VA should be using ICD-10 and appending military subset. See ICD text.
+     3. Store results.
+     4. Make translation class/table for ICD->VA Diagnostics.
+     5. Pull over patient data from VistA - enumerate existing Dxs. 
+     */
+
     return 0;
 }
+

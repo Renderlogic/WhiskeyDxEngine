@@ -57,8 +57,16 @@ for tackling process heavy-operations.
 * Ideally obtain real patient data and search for and apply the translated results to newly initiated claims.
 
 
-## Installation
-* Download Binary and ./ that mofo
+## Compiling, Installing, and, Running
+* Clone the repo: `git clone https://github.com/Renderlogic/WhiskeyDxEngine.git`
+
+* Compile with debug symbols utilizing the following command : `g++ -o WhiskeyDxEngine  main.cpp LinuxSystemUtils.cpp -ggdb`
+
+* Or just download the binary WhiskeyDxEngine and ./ that mofo
+
+![Image of terminal screenshot of WhiskeyDxEngine]
+(screenshot.png)
+
 
 ## Usage/System Requirements
 * Ideally a Supercomputer such as NVIDIA DGX stations.
