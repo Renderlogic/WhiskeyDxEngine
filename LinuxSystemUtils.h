@@ -14,6 +14,8 @@
 #include <fstream>
 #include <string>
 #include <ctype.h>
+#include <map>
+#include <ctype.h>
 
 #ifndef LINUXSYSTEMUTILS_H
 #define LINUXSYSTEMUTILS_H
@@ -32,18 +34,20 @@ public:
      * Will call all necessary methods for the SystemUtils object and populate the hardwareSystem structure
      * @param pThisSystem entry point to pass hardwareSystem aka hardware profile structure mem address to this instance.
      */
-    void initialize(struct hardwareSystem *pThisSystem);
+    void initialize(struct hardwareSystem *pThisSystem, string);
     /**
      Check for and analyze all possible resources to detect a CUDA enabled card and return true if found false if not
      * assign to hardwareSystem cudaEnabled property
      * @return 
      */
     bool cudaCheck();
-    void analyzeCpu();
+    void parseCpuInfo();
 protected:
 private:
     string CPU_INFO_FILE_PATH;
     void trimDirty(string &dirtyString);
+    int unitPropertyCounts[];
+    void assignHardWareStructure();
 };
 #endif /* LINUXSYSTEMUTILS_H */
 

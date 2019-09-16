@@ -6,15 +6,17 @@
  */
 
 #include <cstdlib>
+#include <iomanip>
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <ctype.h>
+#include <map>
 #include "LinuxSystemUtils.h"
 
 /* Create structure for storing results from analyzing the hardware configuration of the current nix machine 
  for various uses throughout the application. Properties are declared to default values on the assumption the luxury
- hardware peripherals are a figment of our imagination. */
+ hardware peripherals are a figment of our imagination. Could class it out but a simple tribute back to C "OOP" was inline. */
 struct hardwareSystem {
     unsigned int coreCount{0};
     unsigned int cpuCount{0};
