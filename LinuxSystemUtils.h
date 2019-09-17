@@ -23,6 +23,8 @@ using namespace std;
 
 class LinuxSystemUtils {
 public:
+    string cpu_info_file_path;
+    map<int, string> cpu_info_tokens;
     /* pointer to the hardware system profile data structure in main global space for use within this class */
     struct hardwareSystem *pSystemMemAddress;
     /**
@@ -34,7 +36,7 @@ public:
      * Will call all necessary methods for the SystemUtils object and populate the hardwareSystem structure
      * @param pThisSystem entry point to pass hardwareSystem aka hardware profile structure mem address to this instance.
      */
-    void initialize(struct hardwareSystem *pThisSystem, string);
+    void initialize(struct hardwareSystem *pThisSystem);
     /**
      Check for and analyze all possible resources to detect a CUDA enabled card and return true if found false if not
      * assign to hardwareSystem cudaEnabled property
@@ -44,10 +46,9 @@ public:
     void parseCpuInfo();
 protected:
 private:
-    string CPU_INFO_FILE_PATH;
     void trimDirty(string &dirtyString);
-    int unitPropertyCounts[];
-    void assignHardWareStructure();
+    int unitPropertyCounts[20];
+    void assignToHardwareStructure();
 };
 #endif /* LINUXSYSTEMUTILS_H */
 
