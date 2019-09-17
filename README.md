@@ -64,8 +64,7 @@ for tackling process heavy-operations.
 
 * Or just download the binary WhiskeyDxEngine and ./ that mofo
 
-![Image of terminal screenshot of WhiskeyDxEngine]
-(screenshot.png)
+![Image of terminal screenshot of WhiskeyDxEngine](https://github.com/Renderlogic/WhiskeyDxEngine/blob/master/screenshot.png)
 
 
 ## Usage/System Requirements
