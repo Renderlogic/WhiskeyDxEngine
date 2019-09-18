@@ -12,9 +12,17 @@
 #include <string>
 #include <ctype.h>
 #include <map>
-#include "LinuxSystemUtils.h"
+#include "usr/LinuxSystemUtils.h"
 
-struct hardwareSystem;
+/* Create structure for storing results from analyzing the hardware configuration of the current nix machine 
+ for various uses throughout the application. Properties are declared to default values on the assumption the luxury
+ hardware peripherals are a figment of our imagination. Could class it out but a simple tribute back to C "OOP" was inline. */
+struct hardwareSystem {
+    unsigned int coreCount{0};
+    unsigned int cpuCount{0};
+    bool isHyperthreaded{false};
+    bool cudaEnabled{false};
+};
 void printGnuLicenseStatement();
 void checkHardwareSubsystem();
 using namespace std;
@@ -81,13 +89,3 @@ void checkHardwareSubsystem() {
     cout << "Skipped Hardware Check." << endl;
 #endif
 }
-
-/* Create structure for storing results from analyzing the hardware configuration of the current nix machine 
- for various uses throughout the application. Properties are declared to default values on the assumption the luxury
- hardware peripherals are a figment of our imagination. Could class it out but a simple tribute back to C "OOP" was inline. */
-struct hardwareSystem {
-    unsigned int coreCount{0};
-    unsigned int cpuCount{0};
-    bool isHyperthreaded{false};
-    bool cudaEnabled{false};
-};

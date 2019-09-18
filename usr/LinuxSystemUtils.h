@@ -47,8 +47,13 @@ public:
 protected:
 private:
     void trimDirty(string &dirtyString);
-    int unitPropertyCounts[20];
+    void setUnitPropertyCounts(int[]);
     void assignToHardwareStructure();
+    /* @todo Add padding to protect this from an overflow attack since the size is variable and depends on user input from the main tokens map.
+    /* However, since we already know the numOfElements required we can simply fix the size to 20 elements and the operation is bounded to the memory scope. 
+     * To unbound this to scale dynamically according to tokens just remove the fixed 20 int literal.
+     */
+    int unitPropertyCounts[20]; 
 };
 #endif /* LINUXSYSTEMUTILS_H */
 

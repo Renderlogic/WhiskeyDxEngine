@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include <string>
 #include <ctype.h>
 #include <map>
@@ -24,7 +25,6 @@ void LinuxSystemUtils::initialize(struct hardwareSystem *pThisSystem) {
     this->pSystemMemAddress = pThisSystem;
     cout << "Initializing Linux System Utilities" << endl;
     cout << "Analyzing CPU Information..." << endl;
-    cout << this->cpu_info_tokens.size();
     parseCpuInfo();
     assignToHardwareStructure();
     cout << "Fishing for BarraCUDAs... \033[1;32m♥ NVIDIA\033[0m" << endl;
@@ -66,8 +66,7 @@ void LinuxSystemUtils::parseCpuInfo() {
          * output standard.
          */
         int parsingTokenSize = this->cpu_info_tokens.size();
-        int numOfElements = numOfProcessingUnits * parsingTokenSize;
-        int unitPropertyCounts[20];
+        int numOfElements = (numOfProcessingUnits * parsingTokenSize);
         int assignedIndex = 0;
         CpuInfoFile.clear();
         CpuInfoFile.seekg(0, ios::beg);
@@ -85,7 +84,7 @@ void LinuxSystemUtils::parseCpuInfo() {
                  */
 
                 if (currentToken == this->cpu_info_tokens[i]) {
-                    unitPropertyCounts[assignedIndex] = stoi(currentLine);
+                    this->unitPropertyCounts[assignedIndex] = stoi(currentLine);
                     assignedIndex++;
                 }
             }
@@ -94,7 +93,6 @@ void LinuxSystemUtils::parseCpuInfo() {
         /* Ensure the assignment went A ok.*/
         if ((assignedIndex) == numOfElements) {
             cout << "All CPU Tokens have been assigned." << endl;
-            /* having lvalue error -- however didn't encounter this yesterday? weird.*/this->unitPropertyCounts = unitPropertyCounts;
         }
 
     }
@@ -108,6 +106,10 @@ bool LinuxSystemUtils::cudaCheck() {
 struct hardwareSystem* LinuxSystemUtils::getHardwareSystemAddress() {
     cout << endl << "System Profile Data Structure Memory Address: " << this->pSystemMemAddress << endl;
     return this->pSystemMemAddress;
+}
+
+void LinuxSystemUtils::setUnitPropertyCounts(int counts[]) {
+    //    this->unitPropertyCounts = counts;
 }
 
 void LinuxSystemUtils::trimDirty(string &dirtyString) {

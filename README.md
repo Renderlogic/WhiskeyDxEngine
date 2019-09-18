@@ -72,11 +72,39 @@ for tackling process heavy-operations.
 * Ideally CUDA capable NVIDIA GPU
 * Ideally Multi-cored CPU
 * Linux RPM-Variant
+* MySQL with appropriate schema and data tables created (see scripts directory for automated bash scripts)
 * Run Application via chron job weekly and upon user-invocation.
-* Run Application via chron job weekly and upon user-invocation.
-* Run Application via chron job weekly and upon user-invocation.
-* Run Application via chron job weekly and upon user-invocation.
-* Run Application via chron job weekly and upon user-invocation.
+
+## Development
+ * Optional General EditorConfig C++ formatting standard to simply diffs and unify team development. 
+
+My IDE of choice for nearly every type of programming project is NetBeans. NetBeans EditorConfig isn't 
+native so must be cloned/built and loaded if not already do so and can be cloned here:
+[url]https://github.com/welovecoding/editorconfig-netbeans.git[/url]
+
+ * Source Code is obviously managed via git.
+ * GDB, GCC, or other Linux-compatible C++ development environment required as of now 
+NetBeans with C/C++ activated and configured provides a GUI to GDB for easier debugging - I being
+a programming super-elitist super coder god of the programming gods do so from the command line. 
+Actually, not doing it out of the said arrogance but merely to help reinforce my cmd skill.
+
+## Project Structure
+* root directory of project
+>> README.md (this file)
+>> main.cpp: the actual program entry point and then some.
+>> gitignore, editorconfig, Makefile, .dep.in
+
+* usr (unix system resources)
+>> LinuxSystemUlils class for managing system resources on Linux boxes.
+
+* scripts 
+>> various automation scripts for generating relational tables, schemas, and, populating data in mysql.
+
+* data
+>> original data sources used for the project and various exported variants of said (sql, xml etc) use as needed.
+
+* bin
+>> binary objects directory
 
 ## Contributing
 Please by all means help me develop this application especially if you have a medical development background. 
@@ -87,3 +115,4 @@ Please make sure to update tests as appropriate.
 ## License
 Copyright (C) 2019 GNU General Public License v3.0 
 Renderlogic, Inc,
+
