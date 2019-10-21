@@ -15,7 +15,6 @@
 #include <string>
 #include <ctype.h>
 #include <map>
-#include <ctype.h>
 
 #ifndef LINUXSYSTEMUTILS_H
 #define LINUXSYSTEMUTILS_H

@@ -13,6 +13,7 @@
 #include <ctype.h>
 #include <map>
 #include "usr/LinuxSystemUtils.h"
+#include "lib/ArgRouter.h"
 
 /* Create structure for storing results from analyzing the hardware configuration of the current nix machine 
  for various uses throughout the application. Properties are declared to default values on the assumption the luxury
@@ -31,6 +32,10 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
+    if (argc > 1) {
+        ArgRouter Router;
+        Router.Route(argc, argv);
+    }
     printGnuLicenseStatement();
     checkHardwareSubsystem();
 
