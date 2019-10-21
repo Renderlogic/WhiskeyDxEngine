@@ -32,12 +32,14 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
+    ArgRouter Router;
     if (argc > 1) {
-        ArgRouter Router;
         Router.Route(argc, argv);
     }
     printGnuLicenseStatement();
-    checkHardwareSubsystem();
+    if (Router.skipHardwareSubsystem == false) {
+        checkHardwareSubsystem();
+    }
 
     /* @todo
      1. Make call to ICD 'restful' URI if needed - i.e. pull most recent additions etc -- maybe to hash comparison.

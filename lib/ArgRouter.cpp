@@ -8,5 +8,9 @@
 #include "ArgRouter.h"
 
 void ArgRouter::Route(int argCount, char** argVector) {
-
+    for (int i = 1; i < count(argVector); i++) {
+        if (argVector[i] == "skipCuda") {
+            ArgRouter.skipHardwareSubsystem = true;
+        }
+    }
 }
