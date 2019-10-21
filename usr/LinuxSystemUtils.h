@@ -42,17 +42,17 @@ public:
      * @return 
      */
     bool cudaCheck();
-    void parseCpuInfo();
+    bool parseCpuInfo();
 protected:
 private:
     void trimDirty(string &dirtyString);
-    void setUnitPropertyCounts(int[]);
     void assignToHardwareStructure();
     /* @todo Add padding to protect this from an overflow attack since the size is variable and depends on user input from the main tokens map.
     /* However, since we already know the numOfElements required we can simply fix the size to 20 elements and the operation is bounded to the memory scope. 
-     * To unbound this to scale dynamically according to tokens just remove the fixed 20 int literal.
+     * To unbound this to scale dynamically according to tokens just remove the fixed 20 int literal numOfElements.
      */
-    int unitPropertyCounts[20]; 
+    int numOfElements = 20; // is a default initialization for bounds enforcement and during the parseCpuInfo method this will be updated accordingly.
+    int unitPropertyCounts[numOfElements]; 
 };
 #endif /* LINUXSYSTEMUTILS_H */
 

@@ -25,8 +25,12 @@ void LinuxSystemUtils::initialize(struct hardwareSystem *pThisSystem) {
     this->pSystemMemAddress = pThisSystem;
     cout << "Initializing Linux System Utilities" << endl;
     cout << "Analyzing CPU Information..." << endl;
-    parseCpuInfo();
-    assignToHardwareStructure();
+    if (parseCpuInfo()) {
+        assignToHardwareStructure();
+    } else {
+        cout << "Hardware Check Assignment Failed!";
+    }
+
     cout << "Fishing for BarraCUDAs... \033[1;32m♥ NVIDIA\033[0m" << endl;
     if (cudaCheck()) {
         cout << "Caught a CUDA!";
@@ -36,7 +40,7 @@ void LinuxSystemUtils::initialize(struct hardwareSystem *pThisSystem) {
 }
 
 /* Stream and Parse /proc/cpuinfo to get a CPU and CORE count and assign to hardwareSystem struct */
-void LinuxSystemUtils::parseCpuInfo() {
+bool LinuxSystemUtils::parseCpuInfo() {
     /* File tokens/sentinels for grabbing values during parsing loops. */
     size_t pos = 0;
     /* @todo: move this literal definition outside the class implementation and set this property externally from main or via input args. */
@@ -67,6 +71,7 @@ void LinuxSystemUtils::parseCpuInfo() {
          */
         int parsingTokenSize = this->cpu_info_tokens.size();
         int numOfElements = (numOfProcessingUnits * parsingTokenSize);
+        this->numOfElements = numOfElements;
         int assignedIndex = 0;
         CpuInfoFile.clear();
         CpuInfoFile.seekg(0, ios::beg);
@@ -93,6 +98,9 @@ void LinuxSystemUtils::parseCpuInfo() {
         /* Ensure the assignment went A ok.*/
         if ((assignedIndex) == numOfElements) {
             cout << "All CPU Tokens have been assigned." << endl;
+            return true;
+        } else {
+            return false;
         }
 
     }
@@ -108,10 +116,6 @@ struct hardwareSystem* LinuxSystemUtils::getHardwareSystemAddress() {
     return this->pSystemMemAddress;
 }
 
-void LinuxSystemUtils::setUnitPropertyCounts(int counts[]) {
-    //    this->unitPropertyCounts = counts;
-}
-
 void LinuxSystemUtils::trimDirty(string &dirtyString) {
     for (unsigned int i = 0; i < dirtyString.length(); i++) {
         if (!isalpha(dirtyString[i]) || isdigit(dirtyString[i])) {
@@ -122,5 +126,12 @@ void LinuxSystemUtils::trimDirty(string &dirtyString) {
 }
 
 void LinuxSystemUtils::assignToHardwareStructure() {
-    // perform hyperthread logic calculation 
+    int parsingTokenSize = this->cpu_info_tokens.size();
+    int currentModResult;
+    for (int i = 1; i < this->numOfElements; i++) {
+        currentModResult = parsingTokenSize % i;
+        if (currentModResult == 0 || currentModResult == parsingTokenSize) {
+            // we are beginning a new processing unit in the structure.
+        }
+    }
 }
