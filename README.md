@@ -122,6 +122,8 @@ I'll list the stuff I've created for this project that has immense potential use
 Currently the only thing is over 70,000 disease codes and descriptions from ICD-10-CM 2020 I have pain stakely placed into an SQL
 table. 
 
+FREE ICD-10-CM SQL TABLE
+
 It's a self-contained table you can add to your projects free of charge. Its in the data directory or can be downloaded directly here:
 
 [url]https://github.com/Renderlogic/WhiskeyDxEngine/raw/master/data/ICD-10-CM-SQL-2020.sql[/url]
