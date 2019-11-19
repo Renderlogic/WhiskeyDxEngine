@@ -84,7 +84,7 @@ for tackling process heavy-operations.
 
 My IDE of choice for nearly every type of programming project is NetBeans. NetBeans EditorConfig isn't 
 native so must be cloned/built and loaded if not already do so and can be cloned here:
-[url]https://github.com/welovecoding/editorconfig-netbeans.git[/url]
+https://github.com/welovecoding/editorconfig-netbeans.git
 
  * Source Code is obviously managed via git.
  * GDB, GCC, or other Linux-compatible C++ development environment required as of now 
@@ -125,8 +125,7 @@ table.
 FREE ICD-10-CM SQL TABLE
 
 It's a self-contained table you can add to your projects free of charge. Its in the data directory or can be downloaded directly here:
-
-[url]https://github.com/Renderlogic/WhiskeyDxEngine/raw/master/data/ICD-10-CM-SQL-2020.sql[/url]
+https://github.com/Renderlogic/WhiskeyDxEngine/raw/master/data/ICD-10-CM-SQL-2020.sql
 
 ![Image of table count from WhiskeyDxEngine](https://github.com/Renderlogic/WhiskeyDxEngine/blob/master/icd10count.png)
 
