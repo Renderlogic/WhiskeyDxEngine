@@ -52,7 +52,7 @@ private:
      * To unbound this to scale dynamically according to tokens just remove the fixed 20 int literal numOfElements.
      */
     int numOfElements = 20; // is a default initialization for bounds enforcement and during the parseCpuInfo method this will be updated accordingly.
-    int unitPropertyCounts[numOfElements]; 
+    int unitPropertyCounts[20]; 
 };
 #endif /* LINUXSYSTEMUTILS_H */
 

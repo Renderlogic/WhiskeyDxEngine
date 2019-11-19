@@ -132,6 +132,7 @@ void LinuxSystemUtils::assignToHardwareStructure() {
         currentModResult = parsingTokenSize % i;
         if (currentModResult == 0 || currentModResult == parsingTokenSize) {
             // we are beginning a new processing unit in the structure.
+            cout << this->cpu_info_tokens[i];
         }
     }
 }
