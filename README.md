@@ -64,6 +64,10 @@ for tackling process heavy-operations.
 
 * Or just download the binary WhiskeyDxEngine and ./ that mofo
 
+* Create a SQL database and install the ICD table
+
+[url]https://github.com/Renderlogic/WhiskeyDxEngine/raw/master/data/ICD-10-CM-SQL-2020.sql[/url]
+
 ![Image of terminal screenshot of WhiskeyDxEngine](https://github.com/Renderlogic/WhiskeyDxEngine/blob/master/screenshot.png)
 
 
@@ -111,6 +115,18 @@ Please by all means help me develop this application especially if you have a me
 VistA EHR experienced-developers welcome. 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 Please make sure to update tests as appropriate.
+
+## Free Stuff
+I'll list the stuff I've created for this project that has immense potential use for other projects. 
+
+Currently the only thing is over 70,000 disease codes and descriptions from ICD-10-CM 2020 I have pain stakely placed into an SQL
+table. 
+
+It's a self-contained table you can add to your projects free of charge. Its in the data directory or can be downloaded directly here:
+
+[url]https://github.com/Renderlogic/WhiskeyDxEngine/raw/master/data/ICD-10-CM-SQL-2020.sql[/url]
+
+![Image of table count from WhiskeyDxEngine](https://github.com/Renderlogic/WhiskeyDxEngine/blob/master/icd10count.png)
 
 ## License
 Copyright (C) 2019 GNU General Public License v3.0 
