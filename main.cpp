@@ -31,7 +31,7 @@ using namespace std;
 /*
  * 
  */
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
     ArgRouter Router;
     if (argc > 1) {
         Router.Route(argc, argv);

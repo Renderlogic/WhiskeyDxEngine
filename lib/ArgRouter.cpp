@@ -16,7 +16,7 @@
 
 using namespace std;
 
-void ArgRouter::Route(int argCount, char** argVector) {
+void ArgRouter::Route(int argCount, char **argVector) {
     for (int i = 1; i < argCount; i++) {
         if (argVector[i] == "skipCuda") {
             this->skipHardwareSubsystem = true;

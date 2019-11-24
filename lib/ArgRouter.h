@@ -13,7 +13,7 @@ using namespace std;
 class ArgRouter {
 public:
     bool skipHardwareSubsystem = false;
-    void Route(int argCount, char** argVector);
+    void Route(int argCount, char **argVector);
 };
 #endif /* ARGROUTER_H */
 

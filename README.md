@@ -60,7 +60,7 @@ for tackling process heavy-operations.
 ## Compiling, Installing, and, Running
 * Clone the repo: `git clone https://github.com/Renderlogic/WhiskeyDxEngine.git`
 
-* Compile with debug symbols utilizing the following command : `g++ -o WhiskeyDxEngine  main.cpp LinuxSystemUtils.cpp -ggdb`
+* Compile with debug symbols utilizing the following command : `g++ -o bin/WhiskeyDxEngine main.cpp usr/LinuxSystemUtils.cpp lib/ArgRouter.cpp -ggdb`
 
 * Or just download the binary WhiskeyDxEngine and ./ that mofo
 

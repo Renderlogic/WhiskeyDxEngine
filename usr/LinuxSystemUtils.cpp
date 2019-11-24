@@ -103,6 +103,8 @@ bool LinuxSystemUtils::parseCpuInfo() {
             return false;
         }
 
+    } else {
+        return false;
     }
 }
 
