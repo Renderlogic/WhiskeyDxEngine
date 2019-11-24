@@ -24,13 +24,15 @@ class LinuxSystemUtils {
 public:
     string cpu_info_file_path;
     map<int, string> cpu_info_tokens;
+    
     /* pointer to the hardware system profile data structure in main global space for use within this class */
     struct hardwareSystem *pSystemMemAddress;
+    
     /**
      * 
      * @return memory address aka pointer to the hardware system profile data structure
      */
-    struct hardwareSystem* getHardwareSystemAddress();
+    struct hardwareSystem *getHardwareSystemAddress();
     /**
      * Will call all necessary methods for the SystemUtils object and populate the hardwareSystem structure
      * @param pThisSystem entry point to pass hardwareSystem aka hardware profile structure mem address to this instance.

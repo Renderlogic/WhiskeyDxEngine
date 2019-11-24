@@ -21,6 +21,7 @@
 struct hardwareSystem {
     unsigned int coreCount{0};
     unsigned int cpuCount{0};
+    unsigned int cpuUnits{0};
     bool isHyperthreaded{false};
     bool cudaEnabled{false};
 };
@@ -83,11 +84,11 @@ void checkHardwareSubsystem() {
         {2, "siblings"},
         {3, "coreid"},
         {4, "cpucores"}};
+    hardwareSystem *pThisSystem, thisSystem;
+    pThisSystem = &thisSystem;
     LinuxSystemUtils SystemUtils;
     SystemUtils.cpu_info_file_path = "/proc/cpuinfo";
     SystemUtils.cpu_info_tokens = cpu_info_tokens;
-    hardwareSystem *pThisSystem, thisSystem;
-    pThisSystem = &thisSystem;
     SystemUtils.initialize(pThisSystem);
     SystemUtils.getHardwareSystemAddress();
 #elif _WIN32

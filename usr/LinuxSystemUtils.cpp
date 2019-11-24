@@ -127,14 +127,36 @@ void LinuxSystemUtils::trimDirty(string &dirtyString) {
     }
 }
 
+/*
+ * this->cpu_info_tokens = $1 = std::map with 5 elements = {[0] = "processor", [1] = "physicalid", [2] = "siblings", [3] = "coreid", [4] = "cpucores"}
+ * this->unitPropertyCounts = $2 = {0, 0, 4, 0, 2, 1, 0, 4, 1, 2, 2, 0, 4, 0, 2, 3, 0, 4, 1, 2} values pulled from /proc/cpuinfo
+ */
 void LinuxSystemUtils::assignToHardwareStructure() {
-    int parsingTokenSize = this->cpu_info_tokens.size();
-    int currentModResult;
-    for (int i = 1; i < this->numOfElements; i++) {
-        currentModResult = parsingTokenSize % i;
-        if (currentModResult == 0 || currentModResult == parsingTokenSize) {
-            // we are beginning a new processing unit in the structure.
-            cout << this->cpu_info_tokens[i];
+    unsigned int parsingTokenSize = this->cpu_info_tokens.size();
+    unsigned int cpuUnits = (this->numOfElements / parsingTokenSize);
+    unsigned int remainingUnits = (this->numOfElements / parsingTokenSize);
+    unsigned int completedUnits = 0;
+    unsigned int currentModResult;
+    unsigned int currentIndex = 0;
+    unsigned int cpuCores, cpuCount;
+    for (unsigned int i = 1; i <= this->numOfElements; i++) {
+        currentModResult = i % parsingTokenSize;
+        if (currentModResult == 0 || i == 1) {
+            /*
+             * check for begging and end of processing unit array
+             * if incremental val i is equal to one we are always at the start of the very 
+             * first processing unit.. and an exceptional branch must be written to handle
+             * that case.
+             */
+            if (i == 1) {
+                /* subtract from a general remaining units variable for further calculation 
+                 * the variable is limited to this methods scope.
+                 */
+                remainingUnits--;
+            }
+
         }
+        currentIndex++;
+        completedUnits = parsingTokenSize - remainingUnits;
     }
 }
