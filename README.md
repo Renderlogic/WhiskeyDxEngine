@@ -92,6 +92,14 @@ NetBeans with C/C++ activated and configured provides a GUI to GDB for easier de
 a programming super-elitist super coder god of the programming gods do so from the command line. 
 Actually, not doing it out of the said arrogance but merely to help reinforce my cmd skill.
 
+## Debugging
+All debugging is done x64_86 via command line GDB. Binary builds are compiled with ggdb symbology available. WDX has a 
+directory in the Renderlogic DebuggingTheFramework Repository as well which features GDB logs vardumps etc - useful files
+to quickly help see runtime data and structures as needed... etc. For instance the array of processing unit counts from LinuxSystemUtils
+can be seen here along with a few other object property dumps used within the assignToHardwareStructure method.
+
+[url]https://github.com/Renderlogic/DebuggingTheFramework/tree/master/WhiskeyDxEngine/gdb-output
+
 ## Branch Structure
 The WhiskeyDxEngine Project just follows a traditional master/development build for now. Features can be branched and pull requested if additional developers join eventually. 
 The project began with the first 23 commits made on a single master pipeline. At commit 23 a development branch was introduced as the code from here will start to get pretty
