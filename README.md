@@ -92,6 +92,12 @@ NetBeans with C/C++ activated and configured provides a GUI to GDB for easier de
 a programming super-elitist super coder god of the programming gods do so from the command line. 
 Actually, not doing it out of the said arrogance but merely to help reinforce my cmd skill.
 
+## Branch Structure
+The WhiskeyDxEngine Project just follows a traditional master/development build for now. Features can be branched and pull requested if additional developers join eventually. 
+The project began with the first 23 commits made on a single master pipeline. At commit 23 a development branch was introduced as the code from here will start to get pretty
+complex and require much testing etc. As the project is really in its infancy stage expect development to heavily outpace master for some time -- i.e. many many commits ahead 
+until routine pull requests are merged periodically.
+
 ## Project Structure
 * root directory of project
 >> README.md (this file)
